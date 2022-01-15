@@ -1,3 +1,5 @@
+
+
 # Logs
 logs
 *.log
@@ -80,7 +82,15 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+dist/*
+!dist/js
+dist/js/*
+!dist/js/bootstrap.min.js
+!dist/js/jquery-3.6.0.min.js
+
+!dist/css
+dist/css/*
+!dist/css/bootstrap.min.css
 
 # Gatsby files
 .cache/

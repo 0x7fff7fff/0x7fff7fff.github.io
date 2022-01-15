@@ -1,0 +1,19 @@
+{
+    "name": "index",
+    "description": ".",
+    "version": "0.0.1",
+    "keywords": [],
+    "homepage": "",
+    "author": "",
+    "contributors": [],
+    "scripts": {},
+    "main": "index.html",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/0x7fff7fff/0x7fff7fff.github.io.git"
+    },
+    "license": "MIT",
+    "devDependencies": {
+      
+    }
+  }
