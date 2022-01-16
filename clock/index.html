@@ -5,17 +5,13 @@
     <meta charset="utf-8">
     <title>Clock</title>
     <link rel="stylesheet" href="../dist/css/bootstrap.min.css">
+
 </head>
 
 <body style="width: 95vw; height: 95vh; margin: auto; margin-top: 10px; ">
     <div id="time1" style="margin: auto; text-align: center; font-size: 350px;"></div>
-
     <div id="time2" style="margin: auto; text-align: center; font-size: 150px;"></div>
-
     <div id="time3" style="margin: auto; text-align: center; font-size: 150px;"></div>
-
-    <script src="../dist/js/jquery-3.6.0.min.js"></script>
-    <script src="../dist/js/bootstrap.min.js"></script>
 
     <script>
         let getLine1 = function () {
@@ -29,7 +25,7 @@
             if (m < 10) {
                 m = "0" + m;
             }
-            var datetime = h + ":" + m ;
+            var datetime = h + ":" + m;
             let time1 = document.getElementById("time1");
             time1.innerText = datetime;
         }
@@ -38,7 +34,7 @@
             var currentdate = new Date();
             let d = currentdate.getDay();
             let datetime = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-            
+
             time2.innerText = datetime[d];
         }
 
@@ -53,15 +49,8 @@
         getLine2();
         getLine3();
         setInterval(getLine1, 60000);
-
-        var currentdate = new Date();
-        var datetime = "Last Sync: " + currentdate.getDate() + "/"
-                + (currentdate.getMonth() + 1) + "/"
-                + currentdate.getFullYear() + " @ "
-                + currentdate.getHours() + ":"
-                + currentdate.getMinutes() + ":"
-                + currentdate.getSeconds();
-                console.log(datetime);
+        setInterval(getLine2, 60000);
+        setInterval(getLine3, 60000);
     </script>
 </body>
 
