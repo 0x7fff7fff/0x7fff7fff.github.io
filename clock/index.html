@@ -10,7 +10,7 @@
     <div id="time1" style="margin: auto; text-align: center; font-size: 340px;"></div>
     <div id="time2" style="margin: auto; text-align: center; font-size: 150px;"></div>
     <div id="time3" style="margin: auto; text-align: center; font-size: 150px;"></div>
-    <div id="time4" style="margin: auto; text-align: center; font-size: 65px;">
+    <!-- <div id="time4" style="margin: auto; text-align: center; font-size: 65px;">
         <table style="margin: auto; text-align: center;">
             <tr>
                 <td>
@@ -24,7 +24,7 @@
                 </td>
             </tr>
         </table>
-    </div>
+    </div> -->
 
     <script>
         // https://api.seniverse.com/v3/weather/now.json?key=key&location=shanghai&language=en&unit=c
@@ -62,28 +62,28 @@
             time3.innerText = datetime;
         }
 
-        var getLine4 = function () {
-            try {
-                fetch(api + key + surfix, {
-                    method: 'POST',
-                }).then((response) => {
-                    return response.json();
-                }).then((result) => {
-                    console.log(result);
-                    var user_input = document.getElementById("user_input");
-                    user_input.innerText = result.results[0].now.text + ",  " + result.results[0].now.temperature + "°C";
-                })
-            } catch (e) {
-                user_input.innerText = user_input.innerText + "*"
-                console.error(e);
-            }
-        }
+        // var getLine4 = function () {
+        //     try {
+        //         fetch(api + key + surfix, {
+        //             method: 'POST',
+        //         }).then((response) => {
+        //             return response.json();
+        //         }).then((result) => {
+        //             console.log(result);
+        //             var user_input = document.getElementById("user_input");
+        //             user_input.innerText = result.results[0].now.text + ",  " + result.results[0].now.temperature + "°C";
+        //         })
+        //     } catch (e) {
+        //         user_input.innerText = user_input.innerText + "*"
+        //         console.error(e);
+        //     }
+        // }
 
-        document.getElementById("passwordBtn").addEventListener('click', (event) => {
-            let keytext = document.getElementById("passwordText").value;
-            key = "SjOx71O8QsdxW5L_" + keytext;
-            getLine4();
-        });
+        // document.getElementById("passwordBtn").addEventListener('click', (event) => {
+        //     let keytext = document.getElementById("passwordText").value;
+        //     key = "SjOx71O8QsdxW5L_" + keytext;
+        //     getLine4();
+        // });
 
         getLine1();
         getLine2();
@@ -92,9 +92,8 @@
         setInterval(getLine1, 60000);   // Get time per minute
         setInterval(getLine2, 60000);   // Get weekday per minute
         setInterval(getLine3, 60000);   // Get date per minute
-        setInterval(getLine4, 3600000); // Get weather per hour
+        // setInterval(getLine4, 3600000); // Get weather per hour
     </script>
 </body>
-
 
 </html>
