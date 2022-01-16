@@ -4,41 +4,40 @@
 <head>
     <meta charset="utf-8">
     <title>Clock</title>
-    <link rel="stylesheet" href="../dist/css/bootstrap.min.css">
 
 </head>
 
-<body style="width: 95vw; height: 95vh; margin: auto; margin-top: 10px; ">
+<body style="margin: auto; margin-top: 10px; ">
     <div id="time1" style="margin: auto; text-align: center; font-size: 350px;"></div>
     <div id="time2" style="margin: auto; text-align: center; font-size: 150px;"></div>
     <div id="time3" style="margin: auto; text-align: center; font-size: 150px;"></div>
 
     <script>
-        let getLine1 = function () {
+        var getLine1 = function () {
             var currentdate = new Date();
-            let h = currentdate.getHours();
+            var h = currentdate.getHours();
             if (h < 10) {
                 h = "0" + h;
             }
 
-            let m = currentdate.getMinutes();
+            var m = currentdate.getMinutes();
             if (m < 10) {
                 m = "0" + m;
             }
             var datetime = h + ":" + m;
-            let time1 = document.getElementById("time1");
+            var time1 = document.getElementById("time1");
             time1.innerText = datetime;
         }
 
-        let getLine2 = function () {
+        var getLine2 = function () {
             var currentdate = new Date();
-            let d = currentdate.getDay();
-            let datetime = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            var d = currentdate.getDay();
+            var datetime = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
 
             time2.innerText = datetime[d];
         }
 
-        let getLine3 = function () {
+        var getLine3 = function () {
             var currentdate = new Date();
             var datetime = (currentdate.getMonth() + 1) + "/"
                 + currentdate.getDate() + "/"
