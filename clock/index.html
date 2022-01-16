@@ -4,52 +4,95 @@
 <head>
     <meta charset="utf-8">
     <title>Clock</title>
-
 </head>
 
-<body style="margin: auto; margin-top: 10px; ">
-    <div id="time1" style="margin: auto; text-align: center; font-size: 350px;"></div>
+<body style="margin: auto;">
+    <div id="time1" style="margin: auto; text-align: center; font-size: 340px;"></div>
     <div id="time2" style="margin: auto; text-align: center; font-size: 150px;"></div>
     <div id="time3" style="margin: auto; text-align: center; font-size: 150px;"></div>
+    <div id="time4" style="margin: auto; text-align: center; font-size: 65px;">
+        <table style="margin: auto; text-align: center;">
+            <tr>
+                <td>
+                    <div id="user_input">
+                        <input type="text" id="passwordText" size="10">
+                        <input type="button" id="passwordBtn" value="Enter Password">
+                    </div>
+                </td>
+                <td>
+                    <img src="cute.jpg" alt="cat_bunny" style="width:250px;height:200px; margin-left: 25px;">
+                </td>
+            </tr>
+        </table>
+    </div>
 
     <script>
+        // https://api.seniverse.com/v3/weather/now.json?key=key&location=shanghai&language=en&unit=c
+        //
+        var api = 'https://api.seniverse.com/v3/weather/now.json?key=';
+        var key = '';
+        var surfix = '&location=shanghai&language=zh-Hans&unit=c';
+
         var getLine1 = function () {
             var currentdate = new Date();
             var h = currentdate.getHours();
             if (h < 10) {
                 h = "0" + h;
             }
-
             var m = currentdate.getMinutes();
             if (m < 10) {
                 m = "0" + m;
             }
-            var datetime = h + ":" + m;
             var time1 = document.getElementById("time1");
-            time1.innerText = datetime;
+            time1.innerText = h + ":" + m;
         }
 
         var getLine2 = function () {
             var currentdate = new Date();
             var d = currentdate.getDay();
             var datetime = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-
+            var time2 = document.getElementById("time2");
             time2.innerText = datetime[d];
         }
 
         var getLine3 = function () {
             var currentdate = new Date();
-            var datetime = (currentdate.getMonth() + 1) + "/"
-                + currentdate.getDate() + "/"
-                + currentdate.getFullYear();
+            var datetime = (currentdate.getMonth() + 1) + "/" + currentdate.getDate() + "/" + currentdate.getFullYear();
+            var time3 = document.getElementById("time3");
             time3.innerText = datetime;
         }
+
+        var getLine4 = function () {
+            try {
+                fetch(api + key + surfix, {
+                    method: 'POST',
+                }).then((response) => {
+                    return response.json();
+                }).then((result) => {
+                    console.log(result);
+                    var user_input = document.getElementById("user_input");
+                    user_input.innerText = result.results[0].now.text + ",  " + result.results[0].now.temperature + "°C";
+                })
+            } catch (e) {
+                user_input.innerText = user_input.innerText + "*"
+                console.error(e);
+            }
+        }
+
+        document.getElementById("passwordBtn").addEventListener('click', (event) => {
+            let keytext = document.getElementById("passwordText").value;
+            key = "SjOx71O8QsdxW5L_" + keytext;
+            getLine4();
+        });
+
         getLine1();
         getLine2();
         getLine3();
-        setInterval(getLine1, 60000);
-        setInterval(getLine2, 60000);
-        setInterval(getLine3, 60000);
+
+        setInterval(getLine1, 60000);   // Get time per minute
+        setInterval(getLine2, 60000);   // Get weekday per minute
+        setInterval(getLine3, 60000);   // Get date per minute
+        setInterval(getLine4, 3600000); // Get weather per hour
     </script>
 </body>
 
